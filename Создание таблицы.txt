@@ -1,0 +1,60 @@
+/* Создание таблицы */
+
+CREATE TABLE book (
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR (50),
+    author VARCHAR (30),
+    price DECIMAL (8,2),
+    amount INT
+  );
+  
+/* Вставка записи в таблицу */
+  
+INSERT INTO book (title, author, price, amount) 
+VALUES (
+    'Мастер и Маргарита', 
+    'Булгаков М.А.', 670.99, 
+    3
+  );
+
+/* Добавление записей */
+  
+INSERT book
+	VALUES
+    	(DEFAULT,'Белая гвардия', 'Булгаков М.А.', 540.50, 5),
+    	(DEFAULT,'Идиот', 'Достоевский Ф.М.', 460.00, 10), 
+    	(DEFAULT,'Братья Карамазовы', 'Достоевский Ф.М.', 799.01, 2);
+
+/* Создание таблицы */
+
+CREATE TABLE departments (
+	department_id INT AUTO_INCREMENT PRIMARY KEY,
+	department_name VARCHAR(50) 
+	);
+
+/* Вставка записи в таблицу */
+	
+INSERT INTO departments (department_name)
+	VALUES
+	('HR'),
+	('Finance'),
+	('IT');
+
+/* Создание таблицы */
+	
+CREATE TABLE employees (
+	employees_id INT AUTO_INCREMENT PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	salary DECIMAL(10, 2),
+	);
+
+/* Вставка записи в таблицу */
+	
+INSERT INTO employees (first_name, last_name, salary)
+	VALUES
+	('John', 'Doe', 50000.00),
+	('Jane', 'Smith', 60000.00),
+	('Michael', 'Johnson', 75000.00),
+	('Emily', 'Davis', 62000.00),
+	('William', 'Brown', 52000.00);
