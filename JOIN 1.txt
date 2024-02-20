@@ -1,0 +1,48 @@
+/* Кто из семьи потратил деньги на развлечения (entertainment). Вывести статус в семье, имя.*/
+
+SELECT status, member_name FROM FamilyMembers
+INNER JOIN Payments ON FamilyMembers.member_id = Payments.family_member
+INNER JOIN Goods ON Payments.good = Goods.good_id
+INNER JOIN GoodTypes ON Goods.type = GoodTypes.good_type_id
+WHERE good_type_name = 'entertainment';
+
+/*Найдите самый дорогой деликатес (delicacies) и выведите его цену*/
+
+SELECT good_name, MAX(unit_price) AS unit_price FROM GoodTypes
+INNER JOIN Goods ON GoodTypes.good_type_id = Goods.type
+INNER JOIN Payments ON Goods.good_id = Payments.good
+WHERE good_type_id = 3;
+
+/*Выведите имена пассажиров улетевших в Кубу (Cuba) на самолете TU-134*/
+
+SELECT DISTINCT name FROM Passenger
+INNER JOIN Pass_in_trip ON Passenger.id = Pass_in_trip.passenger
+INNER JOIN Trip ON Pass_in_trip.trip = Trip.id
+WHERE town_to = 'Cuba';
+
+/*Выведите фамилии преподавателей, которые ведут физическую культуру (Physical Culture). Отсортируйте преподавателей по фамилии в алфавитном порядке.*/
+
+SELECT last_name FROM Teacher
+INNER JOIN Schedule ON Teacher.id = Schedule.teacher
+INNER JOIN Subject ON Schedule.subject = Subject.id
+WHERE name = 'Physical Culture'
+ORDER BY last_name;
+
+/* В каких классах введет занятия преподаватель "Krauze" ?*/
+
+SELECT DISTINCT  name FROM Class
+INNER JOIN Schedule ON Class.id = Schedule.class
+INNER JOIN Teacher ON Schedule.teacher = Teacher.id
+WHERE last_name = 'Krauze';
+
+/* Сколько занятий провел Krauze 30 августа 2019 г.?*/
+
+SELECT COUNT(number_pair) AS count FROM Schedule
+INNER JOIN Teacher ON Schedule.teacher = Teacher.id
+WHERE date LIKE '2019-08-30%' AND last_name = 'Krauze';
+
+/*Определить кто и какого числа потратил деньги в июне 2005.*/
+
+SELECT member_name, unit_price, date FROM FamilyMembers
+INNER JOIN Payments ON FamilyMembers.member_id = Payments.family_member
+WHERE date LIKE '2005-06%';
