@@ -1,0 +1,53 @@
+/*Вывести название, жанр и цену тех книг, количество которых больше 8, в отсортированном по убыванию цены виде.*/
+
+SELECT title, name_genre, price FROM book
+INNER JOIN genre ON genre.genre_id = book.genre_id
+WHERE amount > 8
+ORDER BY price DESC;
+
+/*Вывести все жанры, которые не представлены в книгах на складе.*/
+
+SELECT name_genre FROM genre
+LEFT JOIN book ON genre.genre_id = book.genre_id
+WHERE book.genre_id is NULL;
+
+/* Вывести информацию о книгах (жанр, книга, автор), относящихся к жанру, включающему слово «роман» в отсортированном по названиям книг виде.*.
+
+SELECT name_genre, title, name_author
+FROM genre  
+INNER JOIN book ON book.genre_id = genre.genre_id
+INNER JOIN author ON book.author_id = author.author_id
+WHERE name_genre = 'Роман'
+ORDER BY title;
+
+/* Какие компании совершали перелеты на Boeing*/
+
+SELECT DISTINCT name FROM Company
+INNER JOIN Trip ON Company.id = Trip.company
+WHERE plane = 'Boeing';
+
+/* Какие компании организуют перелеты из Берлина (Berlin)?*/
+
+SELECT DISTINCT name FROM Company
+INNER JOIN Trip ON Company.id = Trip.company
+WHERE town_from = 'Berlin';
+
+/* Выведите дату и время прилёта пассажира Стив Мартин (Steve Martin) в Лондон (London)*/
+
+SELECT time_in FROM Trip
+INNER JOIN Pass_in_trip ON Trip.id = Pass_in_trip.trip
+INNER JOIN Passenger ON Pass_in_trip.passenger = Passenger.id
+WHERE name = 'Steve Martin' AND town_to = 'London';
+
+/*Определить товары, которые покупали более 1 раза*/
+
+SELECT DISTINCT good_name FROM Goods
+INNER JOIN Payments ON Goods.good_id = Payments.good
+WHERE amount > 1;
+
+/*Определить, кто из членов семьи покупал картошку (potato)*/
+
+SELECT DISTINCT  status FROM FamilyMembers
+INNER JOIN Payments ON FamilyMembers.member_id = Payments.family_member
+INNER JOIN Goods ON Payments.good = Goods.good_id
+WHERE good_name = 'potato';
