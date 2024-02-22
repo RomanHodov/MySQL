@@ -1,5 +1,5 @@
 /* Выведите имя first_name и фамилию last_name каждого учителя из таблицы Teacher, а также количество занятий, 
-в которых он был назначен преподавателем. Если преподаватель не был назначен ни на одно занятие, то выведите 0.*/
+в которых он был назначен преподавателем. Если преподаватель не был назначен ни на одно занятие, то выведите 0.*/ 
 
 SELECT first_name, last_name, COUNT(subject) AS amount_classes From Teacher
 LEFT JOIN Schedule ON Teacher.id = Schedule.teacher
