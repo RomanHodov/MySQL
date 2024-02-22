@@ -1,0 +1,41 @@
+/*Выведите всех пользователей с электронной почтой в «hotmail.com»*/
+
+SELECT * FROM Users
+WHERE email LIKE '%@hotmail.com';
+
+/*Вывести всех членов семьи с фамилией Quincey.*/
+
+SELECT * FROM FamilyMembers
+WHERE member_name LIKE '%Quincey';
+
+/*Удалить всех членов семьи с фамилией "Quincey".*/
+
+DELETE FROM FamilyMembers
+WHERE member_name LIKE '%Quincey';
+
+/*Удалить все перелеты, совершенные из Бостона (Boston).*/
+
+DELETE FROM Trip
+WHERE town_from = 'Boston';
+
+/*Измените имя "Andie Quincey" на новое "Andie Anthony".*/
+
+UPDATE FamilyMembers
+SET member_name = 'Andie Anthony'
+WHERE member_name = 'Andie Quincey';
+
+/*Во сколько начинается 4-ый учебный предмет по расписанию ?*/
+
+SELECT start_pair FROM Timepair
+WHERE id = 4;
+
+/* Сколько Анн (Anna) учится в школе ?*/
+
+SELECT COUNT(*) AS count FROM student
+WHERE first_name = 'Anna';
+
+/*Выведите информацию об обучающихся живущих на улице Пушкина (ul. Pushkina)?*/
+
+SELECT * From Student
+WHERE address LIKE 'ul. Pushkina%'
+
