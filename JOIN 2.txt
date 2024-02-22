@@ -1,0 +1,18 @@
+/* Выведите имя first_name и фамилию last_name каждого учителя из таблицы Teacher, а также количество занятий, 
+в которых он был назначен преподавателем. Если преподаватель не был назначен ни на одно занятие, то выведите 0.*/
+
+SELECT first_name, last_name, COUNT(subject) AS amount_classes From Teacher
+LEFT JOIN Schedule ON Teacher.id = Schedule.teacher
+GROUP BY Teacher.id;
+
+/*Выведите полные имена (поля first_name, middle_name и last_name) всех студентов и преподавателей.*/
+
+SELECT first_name, middle_name, last_name FROM Student
+UNION
+SELECT first_name, middle_name, last_name FROM Teacher;
+
+/*Вывести имя, фамилию и номер заказа каждого клиента, который совершал покупки. Если клиент не совершал покупки, то выведите 0.*/
+
+SELECT CustomerName, Address, OrderID FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
