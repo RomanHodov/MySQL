@@ -1,0 +1,30 @@
+/* Вывести id и количество пассажиров для всех прошедших полётов*/
+
+SELECT COUNT(id) AS count, trip FROM Pass_in_trip
+GROUP BY trip;
+
+/* Определить, сколько потратил в 2005 году каждый из членов семьи.*/
+
+SELECT member_name, status, SUM(unit_price) AS costs  FROM FamilyMembers
+INNER JOIN Payments ON FamilyMembers.member_id = Payments.family_member
+WHERE YEAR(date) = '2005'
+GROUP BY member_name, status
+HAVING SUM(unit_price) > 0
+ORDER BY member_name;
+
+/*Добавьте товар с именем "Cheese" и типом "food" в список товаров (Goods).*/
+
+INSERT INTO Goods (good_id, good_name, type)
+SELECT COUNT(*) + 1, 'Cheese', 2 FROM Goods;
+
+/*Добавьте в список типов товаров (GoodTypes) новый тип "auto".*/
+
+INSERT INTO GoodTypes (good_type_id, good_type_name)
+SELECT COUNT(*) +1, 'auto' FROM GoodTypes;
+
+/* Перенести расписание всех занятий на 30 мин. вперед.*/
+
+UPDATE Timepair
+SET start_pair = ADDTIME(start_pair, '00:30:00'),
+    end_pair = ADDTIME(end_pair, '00:30:00');
+	
